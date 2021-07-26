@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.login-inputs{
+  display: flex;
+  flex-direction: column;
+}
+
+.login-inputs label{
+  margin: 2%;
+}
