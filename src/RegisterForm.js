@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Register (props) {
+export default function RegisterForm (props) {
    
     const {
     values,
@@ -21,7 +21,7 @@ export default function Register (props) {
     }
 
     return (
-        <form id='registration'onSubmit={onSubmit}>
+        <form id='registration' onSubmit={onSubmit}>
             <div className ='submit'>
                 <h2>Registration</h2>
 
@@ -33,11 +33,11 @@ export default function Register (props) {
 
             </div>
 
-            <div>
+    <div id='type-user'>
         <label>Instructor
         <input
             type='radio'
-            name='instructor'
+            name='user'
             value='instructor'
             onChange={onChange}
             checked={values.user === 'instructor'}
@@ -47,7 +47,7 @@ export default function Register (props) {
         <label>Client
         <input
             type='radio'
-            name='client'
+            name='user'
             value='client'
             onChange={onChange}
             checked={values.user === 'client'}
@@ -70,7 +70,7 @@ export default function Register (props) {
                 <input
                     value={values.password}
                     onChange={onChange}
-                    name='passoword'
+                    name='password'
                     type='text'
                 />
             </label>

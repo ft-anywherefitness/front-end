@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react"
-import Register from './RegisterForm'
+import axios from 'axios'
+import RegisterForm from './RegisterForm'
 import Schema from './Schema'
 import {reach} from 'yup'
 
@@ -21,12 +22,12 @@ const initialFormErrors = {
 const initialUser = []
 const initialDisabled = true
 
-const initialRegister = () => {
-    const [users, setUsers] = useState(initialUser)          
-    const [formValues, setFormValues] = useState(initialFormValues)
-    const [formErrors, setFormErrors] = useState(initialFormErrors)
-    const [disabled, setDisabled] = useState(initialDisabled)    
-}
+const Register = () => {
+  const [users, setUsers] = useState(initialUser)          
+  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [disabled, setDisabled] = useState(initialDisabled)    
+
 
 const getUsers = () => {
     axios.get('https://reqres.in/api/orders')
@@ -66,6 +67,8 @@ const formSubmit = () => {
     .validate(value)
     .then(() => setFormErrors({...formErrors,[name]: ''}))
     .catch(err => setFormErrors({...formErrors,[name]: err.errors[0]}))
+  }
+  
 
     const inputChange = (name, value) => {
         validate(name,value)
@@ -87,7 +90,7 @@ const formSubmit = () => {
       return (
         <div>
           
-          <Register
+          <RegisterForm
             values={formValues}
             change={inputChange}
             submit={formSubmit}
@@ -100,4 +103,4 @@ const formSubmit = () => {
       
   }
 
-  export default initialRegister;
+  export default Register;
