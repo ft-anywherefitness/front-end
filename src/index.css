@@ -14,10 +14,24 @@ code {
 
 
 .login-inputs{
+  text-align: center;
   display: flex;
   flex-direction: column;
 }
 
 .login-inputs label{
   margin: 2%;
+}
+
+.login-container{
+  text-align:center;
+}
+
+.home-page{
+  text-align: center;
+
+}
+
+.home-page button{
+  /* margin-left: 70%; */
 }
