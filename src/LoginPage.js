@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
 
@@ -27,6 +28,13 @@ export default function Login(props){
     return(
         <form className = 'login-container' onSubmit = {onSubmit}>
             <h2>User Login</h2>
+
+            <div className = 'login-page-home-button'>
+            <Link to ='/'>
+                <button>Home</button>
+            </Link>
+            </div>
+
 
             <div className = 'erros'>
                 <div>{errors.username}</div>
