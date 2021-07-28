@@ -7,6 +7,7 @@ import Instructor from './components/Instructor';
 // import LoginPage from './LoginPage'
 import {Route, Switch} from 'react-router-dom'
 
+function App() {
   return (
     <div className = 'header'>
     <Switch>
@@ -34,8 +35,7 @@ import {Route, Switch} from 'react-router-dom'
 
     </Switch>
     </div>
-    </Router>
   );
 }
 
-
+export default App;
