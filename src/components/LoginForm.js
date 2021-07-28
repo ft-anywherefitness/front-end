@@ -33,10 +33,14 @@ export default function Login(props){
             <Link to ='/'>
                 <button>Home</button>
             </Link>
+
+            <Link to ='/Client'>
+                <button>Client</button>
+            </Link>
             </div>
 
 
-            <div className = 'erros'>
+            <div className = 'errors'>
                 <div>{errors.username}</div>
                 <div>{errors.password}</div>
             </div>

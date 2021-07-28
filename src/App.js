@@ -1,26 +1,38 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
-import Register from './Register'
-
-
-export default function App() {
+import Login from './components/Login';
+import Home from './components/Home';
+import Client from './components/Client';
+import Register from './components/Register';
+import Instructor from './components/Instructor';
+// import LoginPage from './LoginPage'
+import {Route, Switch} from 'react-router-dom'
 
   return (
+    <div className = 'header'>
+    <Switch>
 
-    <Router>
-    <div className="App">
-      <nav>
-        <Link to ='/register'>Register</Link>
-      </nav>
+      <Route exact path = '/'>
+        <Home/>
+      </Route>
 
-      <Switch>
+      <Route path = '/Login'>
+        <Login />
+        {/* <LoginPage /> */}
+      </Route>
 
-        <Route path ='/register'>
-          <Register />
-        </Route>
+      <Route path = '/Register'>
+        <Register />
+      </Route>
 
-      </Switch>
-     
+      <Route path = '/Client'>
+        <Client />
+      </Route>
+
+      <Route path = '/Instructor'>
+        <Instructor />
+      </Route>
+
+    </Switch>
     </div>
     </Router>
   );

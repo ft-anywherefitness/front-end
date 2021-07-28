@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import LoginPage from './LoginPage';
+import LoginForm from '../components/LoginForm';
 // import axios from 'axios'
-// import Schema from 'schema'
+import Schema from '../validation/Schema'
 import {reach} from 'yup'
 
 
@@ -43,7 +43,7 @@ const [disabled, setDisabled] = useState(initialDisabled)
  
 //     axios.get('')
 //       .then(res => {
-//         setFriends(res.data)
+//         setLogin(res.data)
 //       })
 //       .catch(err => {
 //         console.log(err)
@@ -71,20 +71,18 @@ const [disabled, setDisabled] = useState(initialDisabled)
   //////////////// EVENT HANDLERS ////////////////
 
 
-// const validate = (name, value) => {
-//     reach(schema, name)
-//       .validate(value)
-//       .then(() => setFormErrors({ ...formErrors, [name]: '' }))
-//       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
-//   }
+const validate = (name, value) => {
+    reach(Schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
+  }
 
 
 const inputChange = (name, value) => {
-    // 🔥 STEP 10- RUN VALIDATION WITH YUP
-    // validate(name, value)
     setFormValues({
       ...formValues,
-      [name]: value // NOT AN ARRAY
+      [name]: value 
     })
   }
 
@@ -108,14 +106,14 @@ const inputChange = (name, value) => {
 //     getFriends()
 //   }, [])
 
-//   useEffect(() => {
-//     schema.isValid(formValues).then(valid => setDisabled(!valid))
-//   }, [formValues])
+  useEffect(() => {
+    Schema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
 
 
     return(
         <form>
-          <LoginPage 
+          <LoginForm 
            values={formValues}
            change={inputChange}
            submit={formSubmit}
