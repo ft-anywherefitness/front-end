@@ -4,7 +4,6 @@ import Home from './components/Home';
 import Client from './components/Client';
 import Register from './components/Register';
 import Instructor from './components/Instructor';
-// import LoginPage from './LoginPage'
 import {Route, Switch} from 'react-router-dom'
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
 
       <Route path = '/Login'>
         <Login />
-        {/* <LoginPage /> */}
       </Route>
 
       <Route path = '/Register'>

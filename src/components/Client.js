@@ -7,21 +7,28 @@ import {reach} from 'yup'
 //////////////// INITIAL STATES ////////////////
 //////////////// INITIAL STATES ////////////////
 const initialFormValues = {
-    classTime: '',
-    classDate: '',
-    classDuration: '',
-    classType: '',
-    intensityLevel: '',
-    classLocation: '',
+   //text inputs
+  name:'',
+  location:'',
+  //dropdown
+  time:'',
+
+//checkbox
+easy: false,
+intermediate: false,
+advanced: false,
+yoga:false,
+pilates:false,
+strength:false,
+cardio:false,
 }
 
 const initialFormErrors = {
-    classTime: '',
-    classDate: '',
-    classDuration: '',
-    classType: '',
-    intensityLevel: '',
-    classLocation: '',
+   //text inputs
+  name:'',
+  location:'',
+  //dropdown
+  time:'',
 }
 
 
@@ -84,6 +91,7 @@ const validate = (name, value) => {
 
 
 const inputChange = (name, value) => {
+    validate(name,value)
     setFormValues({
       ...formValues,
       [name]: value 
@@ -93,12 +101,9 @@ const inputChange = (name, value) => {
 
   const formSubmit = () => {
     const newClient = {
-      classTime: formValues.classTime.trim(),
-      classDate: formValues.classDate.trim(),
-      classDuration: formValues.classDuration.trim(),
-      classType: formValues.classType.trim(),
-      intensityLevel: formValues.intensityLevel.trim(),
-      classLocation: formValues.classLocation.trim(),
+      name: formValues.name.trim(),
+      location: formValues.location.trim(),
+      time:formValues.time.trim(),
     }
     console.log(newClient)
     // postNewClient(newClient)
