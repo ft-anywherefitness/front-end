@@ -18,6 +18,18 @@ export default function Home(){
                 <button>Login</button>
                 </Link>
 
+                <Link to = '/Register'>
+                <button>Register</button>
+                </Link>
+
+                <Link to= '/Client'>
+                <button>Client</button>
+                </Link>
+
+                <Link to = '/Instructor'>
+                <button>Instructor</button> 
+                </Link>
+
                 
             </header>
         </div>
