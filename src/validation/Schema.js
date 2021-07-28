@@ -14,33 +14,7 @@ const formSchema = yup.object().shape({
     .required('Password is required')
     .min(3, 'Password must be at least 3 characters long'),
 
-
-    // client page
-    classTime: yup
-    .string()
-    .oneOf(['morning', 'afternoon', 'night'], 'Please choose a class time'),
-
-    classDate: yup
-    .string()
-    .oneOf(['monday', 'tuesday', 'wednsday', 'thursday', 'friday', 'saturday', 'sunday'], 'Please choose a class date'),
-
-    classDuration: yup
-    .string()
-    .oneOf(['thirty', 'hour', 'twoHours']),
-
-    classType: yup
-    .string()
-    .oneOf(['yoga', 'weights', 'cycling', 'dance', 'boxing']),
-
-    intensityLevel: yup
-    .string()
-    .oneOf(['easy', 'normal', 'hard', 'intense', 'extreme']), 
-
-    classLocation: yup
-    .string()
-    .oneOf(['california', 'arizona', 'sandiego', 'utah', 'newyork', 'florida', 'texas']),
-
-    //instructor page
+    //instructor/client page
     user:yup
     .string()
     .oneOf(['instructor', 'client'], 'type of user is required'),

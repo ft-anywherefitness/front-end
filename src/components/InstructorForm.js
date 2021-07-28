@@ -92,7 +92,7 @@ export default function InstructorForm (props) {
         <label>Easy
             <input 
               type='checkbox'
-              name='level'
+              name='easy'
               onChange={onChange}
               checked={values.easy}
             />
@@ -101,7 +101,7 @@ export default function InstructorForm (props) {
         <label>Intermediate
             <input 
               type='checkbox'
-              name='level'
+              name='intermediate'
               onChange={onChange}
               checked={values.intermediate}
             />
@@ -110,7 +110,7 @@ export default function InstructorForm (props) {
         <label>Advanced
             <input 
               type='checkbox'
-              name='level'
+              name='advanced'
               onChange={onChange}
               checked={values.advanced}
             />

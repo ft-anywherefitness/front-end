@@ -86,7 +86,7 @@ const formSubmit = () => {
   
 
     const inputChange = (name, value) => {
-        // validate(name,value)
+        validate(name,value)
         setFormValues({
           ...formValues,
           [name]: value

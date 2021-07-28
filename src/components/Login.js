@@ -80,6 +80,7 @@ const validate = (name, value) => {
 
 
 const inputChange = (name, value) => {
+    validate(name,value)
     setFormValues({
       ...formValues,
       [name]: value 
@@ -107,7 +108,8 @@ const inputChange = (name, value) => {
 //   }, [])
 
   useEffect(() => {
-    Schema.isValid(formValues).then(valid => setDisabled(!valid))
+    Schema.isValid(formValues)
+    .then(valid => setDisabled(!valid))
   }, [formValues])
 
 

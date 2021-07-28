@@ -18,131 +18,154 @@ export default function Client(props){
     }
 
 
-    const onChange = evt => {
-        const {name, value} = evt.target
-        change(name,value)
+    const onChange = (evt) => {
+        const { name, value, type, checked } = evt.target
+        const valueToUse = type === 'checkbox' ? checked : value
+        change(name, valueToUse)
     }
 
 
     return(
         <form className = 'client-container' onSubmit = {onSubmit}>
-            <h2>Create Your Own Custom Workout Class</h2>
-
             <Link to ='/'>
                 <button>Home</button>
             </Link>
 
+            <h2>Choose Your Own Custom Workout Class</h2>
+
             <div className = 'errors'>
-                <div>{errors.classTime}</div>
-                <div>{errors.classDate}</div>
-                <div>{errors.classDuration}</div>
-                <div>{errors.classType}</div>
-                <div>{errors.intensityLevel}</div>
-                <div>{errors.classLocation}</div>
+                <div>{errors.name}</div>
+                <div>{errors.location}</div>
+                <div>{errors.time}</div>
             </div>
 
+            <div>
+            <label>Name
+                <input
+                    value={values.name}
+                    onChange={onChange}
+                    name='name'
+                    type='text'
+                />
+            </label>
+        </div>
+           
 
-        <h2>Class Time</h2>
-        {/* ////////// DROPDOWN ////////// */}
-        {/* ////////// DROPDOWN ////////// */}
-        {/* ////////// DROPDOWN ////////// */}
-        <label htmlFor = 'classTime'>
-            <select
-            name = 'classTime'
-            onChange = {onChange}
-            value = {values.classTime}
-            >
-                <option value = ''> -- Select a Time --</option>
-                <option value = 'morning'> 8:00am - 10:00am</option>
-                <option value = 'afternoon'> 1:00pm - 3:00pm</option>
-                <option value = 'night'> 7:00pm - 9:00pm</option>
-            </select>
+        <div>
+            <label>Location
+                <input
+                    value={values.location}
+                    onChange={onChange}
+                    name='location'
+                    type='text'
+                />
+            </label>
+        </div>
+
+        <div> 
+            <h3>Difficulty Level</h3>
+
+        <label>Easy
+            <input 
+              type='checkbox'
+              name='easy'
+              onChange={onChange}
+              checked={values.easy}
+            />
         </label>
 
-
-        <h2>Class Date</h2>
-        <label htmlFor = 'classDate'>
-            <select
-            name = 'classDate'
-            onChange = {onChange}
-            value = {values.classDate}
-            >
-                <option value = ''> -- Select a Date --</option>
-                <option value = 'monday'> Monday </option>
-                <option value = 'tuesday'> Tuesday</option>
-                <option value = 'wednsday'> Wednsday</option>
-                <option value = 'thursday'> Thursday</option>
-                <option value = 'friday'> Friday</option>
-                <option value = 'saturday'> Saturday</option>
-                <option value = 'sunday'> Sunday</option>
-            </select>
+        <label>Intermediate
+            <input 
+              type='checkbox'
+              name='intermediate'
+              onChange={onChange}
+              checked={values.intermediate}
+            />
         </label>
 
-        <h2>Class Duration</h2>
-        <label htmlFor = 'classDuration'>
-            <select
-            name = 'classDuration'
-            onChange = {onChange}
-            value = {values.classDuration}
-            >
-                <option value = ''> -- Select a Duration --</option>
-                <option value = 'thirty'> 30 minuets</option>
-                <option value = 'hour'> 1 hour</option>
-                <option value = 'twoHours'> 2 hours</option>
-            </select>
+        <label>Advanced
+            <input 
+              type='checkbox'
+              name='advanced'
+              onChange={onChange}
+              checked={values.advanced}
+            />
+        </label>
+        </div>
+
+        <div> 
+            <h3>Class Type</h3>
+
+        <label>Yoga
+            <input 
+              type='checkbox'
+              name='yoga'
+              onChange={onChange}
+              checked={values.yoga}
+            />
         </label>
 
-        <h2>Class Type</h2>
-        <label htmlFor = 'classType'>
-            <select
-            name = 'classType'
-            onChange = {onChange}
-            value = {values.classType}
-            >
-                <option value = ''> -- Select a Type --</option>
-                <option value = 'yoga'> Yoga</option>
-                <option value = 'weights'> Weights</option>
-                <option value = 'cycling'> Cycling</option>
-                <option value = 'dance'> Dance</option>
-                <option value = 'boxing'> Boxing</option>
-            </select>
+        <label>Pilates
+            <input 
+              type='checkbox'
+              name='pilates'
+              onChange={onChange}
+              checked={values.pilates}
+            />
         </label>
 
-        <h2>Intensity Level</h2>
-        <label htmlFor = 'intensityLevel'>
-            <select
-            name = 'intensityLevel'
-            onChange = {onChange}
-            value = {values.intensityLevel}
-            >
-                 <option value = ''> -- Select a Intensity Level --</option>
-                 <option value = 'easy'> Easy</option>
-                 <option value = 'normal'> Normal</option>
-                 <option value = 'hard'> Hard</option>
-                 <option value = 'intense'> Intense</option>
-                 <option value = 'extreme'> Extreme</option>
-            </select>
+        <label>Strength
+            <input 
+              type='checkbox'
+              name='strength'
+              onChange={onChange}
+              checked={values.strength}
+            />
         </label>
 
-        <h2>Class Location</h2>
-        <label htmlFor = 'classLocation'>
-            <select
-            name = 'classLocation'
-            onChange = {onChange}
-            value = {values.classLocation}
-            >
-                <option value = ''> -- Select a Location --</option>
-                <option value = 'california'> California</option>
-                <option value = 'arizona'> Arizona</option>
-                <option value = 'sandiego'> San Diego</option>
-                <option value = 'utah'> Utah</option>
-                <option value = 'newyork'> New York</option>
-                <option value = 'florida'> Florida</option>
-                <option value = 'texas'> Texas</option>
-            </select>
+        <label>Cardio
+            <input 
+              type='checkbox'
+              name='cardio'
+              onChange={onChange}
+              checked={values.cardio}
+            />
         </label>
-        <button disabled = {disabled}>Create</button>
-        </form>
+        </div>
+
+        <div> 
+            <h3>Time Duration</h3>
+        <label>Time Select
+          <select
+            value={values.time}
+            onChange={onChange}
+            name='time'
+            >
+            <option value=''>- Select a time -</option>
+            <option value='6am'>6:00 AM - 7:00 AM</option>
+            <option value='7am'>7:00 AM - 8:00 AM</option>
+            <option value='8am'>8:00 AM - 9:00 AM</option>
+            <option value='9am'>9:00 AM - 10:00 AM</option>
+            <option value='10am'>10:00 AM - 11:00 AM</option>
+            <option value='11am'>11:00 AM - 12:00 PM</option>
+            <option value='12pm'>12:00 PM - 1:00 PM</option>
+            <option value='1pm'>1:00 PM - 2:00 PM</option>
+            <option value='2pm'>2:00 PM - 3:00 PM</option>
+            <option value='3pm'>3:00 PM - 4:00 PM</option>
+            <option value='4pm'>4:00 PM - 5:00 PM</option>
+            <option value='5pm'>5:00 PM - 6:00 PM</option>
+            <option value='6pm'>6:00 PM - 7:00 PM</option>
+            <option value='7pm'>7:00 PM - 8:00 PM</option>
+            <option value='8pm'>8:00 PM - 9:00 PM</option>
+            <option value='9pm'>9:00 PM - 10:00 PM</option>
+            <option value='10pm'>10:00 PM -11:00 PM</option>
+          </select>
+        </label>
+        </div>
+    
+
+        <button disabled={disabled}>Create Class</button>
+       </form>
     )
 }
 
