@@ -67,15 +67,6 @@ export default function Login(props){
         <StyledLogin>
         <form className = 'login-container' onSubmit = {onSubmit}>
 
-            <div className = 'login-button'>
-            <Link to ='/'>
-                <button>Home</button>
-            </Link>
-
-            <Link to ='/Client'>
-                <button>Client</button>
-            </Link>
-            </div>
 
             <div className='loginDiv'>
             <h1>User Login</h1>

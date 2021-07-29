@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react"
+import React, {useState} from "react"
 import axios from 'axios'
 import InstructorForm from '../components/InstructorForm'
 // import Schema from '../validation/Schema'
@@ -8,15 +8,17 @@ const initialFormValues = {
 //text inputs
   class_name:'',
   class_location:'',
-  registered:'',
-  max_size:'',
+  registered:0,
+  max_size:0,
   class_type:'',
+  duration:60,
 
 //dropdown
   start_time:'',
 
 //radio
   intensity_level:'',
+
 }
 
 const initialFormErrors = {
@@ -66,11 +68,12 @@ const formSubmit = () => {
     const newUser = {
       class_name: formValues.class_name.trim(),
       class_location: formValues.class_location.trim(),
-      registered: formValues.registered.trim(),
-      max_size: formValues.max_size.trim(),
+      registered: formValues.registered,
+      max_size: formValues.max_size,
       start_time:formValues.start_time.trim(),
       class_type:formValues.class_type.trim(),
       intensity_level:formValues.intensity_level.trim(),
+      duration: 60,
     }
     postNewUser(newUser)
   }
