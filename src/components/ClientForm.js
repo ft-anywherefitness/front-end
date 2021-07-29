@@ -44,6 +44,7 @@ button{
         padding:5%;
         border:5px solid;
         border-image: linear-gradient(to right, red, purple) 1;
+        margin-top: 20%;
     }
 
     #search{
@@ -80,9 +81,6 @@ export default function Client(props){
         <StyledClient>
             
         <form className = 'client-container' onSubmit = {onSubmit}>
-            <Link to ='/'>
-                <button>Home</button>
-            </Link>
             <div className='container'>
             <h2>Search Custom Workout Class</h2>
 
@@ -120,28 +118,28 @@ export default function Client(props){
 
         <label>Easy
             <input 
-              type='checkbox'
+              type='radio'
               name='easy'
               onChange={onChange}
-              checked={values.easy}
+              checked={values.easy === 'easy'}
             />
         </label>
 
         <label>Intermediate
             <input 
-              type='checkbox'
+              type='radio'
               name='intermediate'
               onChange={onChange}
-              checked={values.intermediate}
+              checked={values.intermediate === 'intermediate'}
             />
         </label>
 
         <label>Advanced
             <input 
-              type='checkbox'
+              type='radio'
               name='advanced'
               onChange={onChange}
-              checked={values.advanced}
+              checked={values.advanced === 'advanced'}
             />
         </label>
         </div>
@@ -195,7 +193,7 @@ export default function Client(props){
             name='time'
             >
             <option value=''>- Select a time -</option>
-            <option value='6am'>6:00 AM - 7:00 AM</option>
+            <option value='06:00:00'>6:00 AM - 7:00 AM</option>
             <option value='7am'>7:00 AM - 8:00 AM</option>
             <option value='8am'>8:00 AM - 9:00 AM</option>
             <option value='9am'>9:00 AM - 10:00 AM</option>
