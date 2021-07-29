@@ -21,6 +21,19 @@ export default function RegisterForm (props) {
         change(name,value,type)
     }
 
+    // function linkTo(){
+    //     if(values.user=== 'instructor'){
+    //         <Link to = 'Client'>
+    //         <button id='register-button' disabled={disabled}>Register</button>
+    //         </Link>
+    //     }
+    //     else if (values.user === 'client'){
+    //         <Link to = 'Instructor'>
+    //         <button id='register-button' disabled={disabled}>Register</button>
+    //         </Link>
+    //     }
+    // }
+
     return (
     
         <form id='registration' onSubmit={onSubmit}>

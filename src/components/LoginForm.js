@@ -71,7 +71,9 @@ export default function Login(props){
                     />
                 </label>
             </div>
+            <Link to = '/client'>
             <button disabled = {disabled}>submit</button>
+            </Link>
 
         </form>
     )
