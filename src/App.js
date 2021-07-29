@@ -6,7 +6,12 @@ import Register from './components/Register';
 import Instructor from './components/Instructor';
 import {Route, Switch} from 'react-router-dom'
 
+import { useState } from 'react'
+
 function App() {
+
+  const [loggedUser, setLoggedUser] = useState([])
+
   return (
     <div className = 'header'>
     <Switch>
@@ -16,7 +21,9 @@ function App() {
       </Route>
 
       <Route path = '/Login'>
-        <Login />
+        <Login 
+          setLog={setLoggedUser}
+        />
       </Route>
 
       <Route path = '/Register'>
@@ -24,11 +31,15 @@ function App() {
       </Route>
 
       <Route path = '/Client'>
-        <Client />
+        <Client 
+          loggedIn={loggedUser}
+        />
       </Route>
 
       <Route path = '/Instructor'>
-        <Instructor />
+        <Instructor 
+          loggedIn={loggedUser}
+        />
       </Route>
 
     </Switch>
