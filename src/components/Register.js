@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from "react"
-// import axios from 'axios'
+import axios from 'axios'
 import RegisterForm from './RegisterForm'
 import Schema from '../validation/Schema'
 import {reach} from 'yup'
@@ -7,14 +7,14 @@ import {reach} from 'yup'
 
 const initialFormValues = {
     //radio
-    user:'',
+    role:'',
     //text inputs
     username:'',
     password:'',
 }
 
 const initialFormErrors = {
-    user:'',
+    role:'',
     username:'',
     password:'',
 }
@@ -39,28 +39,27 @@ const Register = () => {
 //     })
 //   }
 
-//   const postNewUser = newUser => {
-//     axios.post('https://reqres.in/api/users', newUser)
-//     .then(res => {
-//       setUsers([res.data, ...users])
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     })
-//     .finally(() => {
-//       setFormValues(initialFormValues)
-//     })
-//   }
+  const postNewUser = newUser => {
+    axios.post('http://localhost:5000/api/auth/register', newUser)
+    .then(res => {
+      // console.log("Checking data", res.data)
+      setUsers([res.data, ...users])
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    .finally(() => {
+      setFormValues(initialFormValues)
+    })
+  }
 
 const formSubmit = () => {
     const newUser = {
-      instructor: formValues.instructor.trim(),
-      client: formValues.client.trim(),
+      role: formValues.role.trim(),
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     }
-    console.log(newUser)
-    // postNewUser(newUser)
+    postNewUser(newUser)
   }
 
   const validate = (name,value) => {
@@ -85,7 +84,7 @@ const formSubmit = () => {
 
       useEffect(() => {
         Schema.isValid(formValues)
-        .then(valid => setDisabled(!valid))
+        .then(valid => setDisabled(valid))
       }, [formValues])
 
       return (

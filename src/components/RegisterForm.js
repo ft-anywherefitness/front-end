@@ -76,7 +76,7 @@ export default function RegisterForm (props) {
                 <h2>Registration</h2>
 
                 <div className='errors'>
-                <div>{errors.user}</div>
+                <div>{errors.role}</div>
                 <div>{errors.username}</div>
                 <div>{errors.password}</div>
                 </div>
@@ -87,20 +87,20 @@ export default function RegisterForm (props) {
         <label>Instructor
         <input
             type='radio'
-            name='user'
+            name='role'
             value='instructor'
             onChange={onChange}
-            checked={values.user === 'instructor'}
+            checked={values.role === 'instructor'}
           />
         </label>
 
         <label>Client
         <input
             type='radio'
-            name='user'
+            name='role'
             value='client'
             onChange={onChange}
-            checked={values.user === 'client'}
+            checked={values.role === 'client'}
           />
         </label>
         </div>
