@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import styled from 'styled-components'
+
 
 const StyledInstructor = styled.div`
 display:flex;
@@ -43,7 +43,8 @@ h1{
     border-radius:20px;
     padding:5%;
     border:5px solid;
-    border-image: linear-gradient(to right,  #ffccff, #66ffff) 1;
+    border-image: linear-gradient(to right,  #ffccff
+, #66ffff) 1;
 }
 
 #create{
@@ -68,9 +69,8 @@ export default function InstructorForm (props) {
         submit()
     }
     const onChange = (evt) => {
-        const { name, value, type, checked } = evt.target
-        const valueToUse = type === 'checkbox' ? checked : value
-        change(name, valueToUse)
+        const { name, value, type } = evt.target
+        change(name, value, type)
     }
     
 
@@ -79,28 +79,28 @@ export default function InstructorForm (props) {
           
         <form onSubmit={onSubmit}>
            
-                <Link to = '/'>
-                    <button>Home</button>
-                </Link>
                 <div className='formDiv'>
                 <h1>Create Your Class</h1>
 
                 <div className='errors'>
-                <div>{errors.name}</div>
-                <div>{errors.location}</div>
-                <div>{errors.attendees}</div>
-                <div>{errors.size}</div>
-                <div>{errors.time}</div>
+                <div>{errors.class_name}</div>
+                <div>{errors.class_location}</div>
+                <div>{errors.registered}</div>
+                <div>{errors.max_size}</div>
+                <div>{errors.start_time}</div>
+                <div>{errors.class_type}</div>
+                <div>{errors.intensity_level}</div>
                 </div>
            
 
         <div>
             <label>Name
                 <input
-                    value={values.name}
+                    value={values.class_name}
                     onChange={onChange}
-                    name='name'
+                    name='class_name'
                     type='text'
+                    placeholder='Please enter a name'
                 />
             </label>
         </div>
@@ -109,10 +109,11 @@ export default function InstructorForm (props) {
         <div>
             <label>Location
                 <input
-                    value={values.location}
+                    value={values.class_location}
                     onChange={onChange}
-                    name='location'
+                    name='classs_location'
                     type='text'
+                    placeholder='Please enter a location'
                 />
             </label>
         </div>
@@ -120,10 +121,11 @@ export default function InstructorForm (props) {
         <div>
             <label>Current number of registered attendees
                 <input
-                    value={values.attendees}
+                    value={values.registered}
                     onChange={onChange}
-                    name='attendees'
-                    type='text'
+                    name='registered'
+                    type='number'
+                    placeholder='Optional'
                 />
             </label>
         </div>
@@ -131,116 +133,92 @@ export default function InstructorForm (props) {
         <div>
             <label>Max class size
                 <input
-                    value={values.size}
+                    value={values.max_size}
                     onChange={onChange}
-                    name='size'
-                    type='text'
+                    name='max_size'
+                    type='number'
+                    placeholder='Optional'
+                />
+            </label>
+        </div>
+
+
+        <div>
+            <label>Class Type
+                <input
+                    value={values.class_type}
+                    onChange={onChange}
+                    name='class_type'
+                    type='number'
+                    placeholder='Please enter class type'
                 />
             </label>
         </div>
 
 
         <div> 
-            <h3>Difficulty Level</h3>
-
-        <label>Easy
-            <input 
-              type='checkbox'
-              name='easy'
-              onChange={onChange}
-              checked={values.easy}
-            />
-        </label>
-
-        <label>Intermediate
-            <input 
-              type='checkbox'
-              name='intermediate'
-              onChange={onChange}
-              checked={values.intermediate}
-            />
-        </label>
-
-        <label>Advanced
-            <input 
-              type='checkbox'
-              name='advanced'
-              onChange={onChange}
-              checked={values.advanced}
-            />
-        </label>
-        </div>
-
-        <div> 
-            <h3>Class Type</h3>
-
-        <label>Yoga
-            <input 
-              type='checkbox'
-              name='yoga'
-              onChange={onChange}
-              checked={values.yoga}
-            />
-        </label>
-
-        <label>Pilates
-            <input 
-              type='checkbox'
-              name='pilates'
-              onChange={onChange}
-              checked={values.pilates}
-            />
-        </label>
-
-        <label>Strength
-            <input 
-              type='checkbox'
-              name='strength'
-              onChange={onChange}
-              checked={values.strength}
-            />
-        </label>
-
-        <label>Cardio
-            <input 
-              type='checkbox'
-              name='cardio'
-              onChange={onChange}
-              checked={values.cardio}
-            />
-        </label>
-        </div>
-
-        <div> 
             <h3>Time Duration</h3>
         <label>Time Select
           <select
-            value={values.time}
+            value={values.start_time}
             onChange={onChange}
-            name='time'
+            name='start_time'
             >
             <option value=''>- Select a time -</option>
-            <option value='6am'>6:00 AM - 7:00 AM</option>
-            <option value='7am'>7:00 AM - 8:00 AM</option>
-            <option value='8am'>8:00 AM - 9:00 AM</option>
-            <option value='9am'>9:00 AM - 10:00 AM</option>
-            <option value='10am'>10:00 AM - 11:00 AM</option>
-            <option value='11am'>11:00 AM - 12:00 PM</option>
-            <option value='12pm'>12:00 PM - 1:00 PM</option>
-            <option value='1pm'>1:00 PM - 2:00 PM</option>
-            <option value='2pm'>2:00 PM - 3:00 PM</option>
-            <option value='3pm'>3:00 PM - 4:00 PM</option>
-            <option value='4pm'>4:00 PM - 5:00 PM</option>
-            <option value='5pm'>5:00 PM - 6:00 PM</option>
-            <option value='6pm'>6:00 PM - 7:00 PM</option>
-            <option value='7pm'>7:00 PM - 8:00 PM</option>
-            <option value='8pm'>8:00 PM - 9:00 PM</option>
-            <option value='9pm'>9:00 PM - 10:00 PM</option>
-            <option value='10pm'>10:00 PM -11:00 PM</option>
+            <option value='6:00:00'>6:00 AM - 7:00 AM</option>
+            <option value='7:00:00'>7:00 AM - 8:00 AM</option>
+            <option value='8:00:00'>8:00 AM - 9:00 AM</option>
+            <option value='9:00:00'>9:00 AM - 10:00 AM</option>
+            <option value='10:00:00'>10:00 AM - 11:00 AM</option>
+            <option value='11:00:00'>11:00 AM - 12:00 PM</option>
+            <option value='12:00:00'>12:00 PM - 1:00 PM</option>
+            <option value='13:00:00'>1:00 PM - 2:00 PM</option>
+            <option value='14:00:00'>2:00 PM - 3:00 PM</option>
+            <option value='15:00:00'>3:00 PM - 4:00 PM</option>
+            <option value='16:00:00'>4:00 PM - 5:00 PM</option>
+            <option value='17:00:00'>5:00 PM - 6:00 PM</option>
+            <option value='18:00:00'>6:00 PM - 7:00 PM</option>
+            <option value='19:00:00'>7:00 PM - 8:00 PM</option>
+            <option value='20:00:00'>8:00 PM - 9:00 PM</option>
+            <option value='21:00:00'>9:00 PM - 10:00 PM</option>
+            <option value='22:00:00'>10:00 PM -11:00 PM</option>
           </select>
         </label>
         </div>
-    
+ 
+        <div>
+        <label>Easy
+        <input
+            type='radio'
+            name='intensity_level'
+            value='easy'
+            onChange={onChange}
+            checked={values.intensity_level === 'easy'}
+          />
+        </label>
+        
+
+        <label>Intermediate
+        <input
+            type='radio'
+            name='intensity_level'
+            value='intermediate'
+            onChange={onChange}
+            checked={values.intensity_level === 'intermediate'}
+          />
+        </label>
+      
+
+        <label>Advanced
+        <input
+            type='radio'
+            name='intenisity_level'
+            value='advanced'
+            onChange={onChange}
+            checked={values.intensity_level === 'advanced'}
+          />
+        </label>
+        </div>
 
         <button id='create' disabled={disabled}>Create Class</button>
         </div>

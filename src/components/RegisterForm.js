@@ -69,9 +69,6 @@ export default function RegisterForm (props) {
     return (
     <StyledRegister>
         <form id='registration' onSubmit={onSubmit}>
-            <Link to ='/'>
-                <button id='home-but'>Home</button>
-            </Link>
             <div className ='registerDiv'>
                 <h2>Registration</h2>
 
