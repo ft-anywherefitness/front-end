@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import LoginForm from '../components/LoginForm';
 import axios from 'axios'
-import Schema from '../validation/Schema'
-import {reach} from 'yup'
+// import Schema from '../validation/Schema'
+// import {reach} from 'yup'
 
 import { useHistory } from 'react-router-dom'
 
@@ -17,10 +17,10 @@ const initialFormValues = {
 
 
 
-const initialFormErrors = {
-    username: '',
-    password: '',
-}
+// const initialFormErrors = {
+//     username: '',
+//     password: '',
+// }
 
 const initialLogin = []
 const initialDisabled = true
@@ -31,7 +31,7 @@ export default function InitialLogin(props){
   //////////////// STATES ////////////////
 const [login, setLogin] = useState(initialLogin)
 const [formValues, setFormValues] = useState(initialFormValues)
-const [formErrors, setFormErrors] = useState(initialFormErrors)
+// const [formErrors, setFormErrors] = useState(initialFormErrors)
 const [disabled, setDisabled] = useState(initialDisabled)
 
 const { push } = useHistory()
@@ -80,16 +80,16 @@ const { push } = useHistory()
   //////////////// EVENT HANDLERS ////////////////
 
 
-const validate = (name, value) => {
-    reach(Schema, name)
-      .validate(value)
-      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
-      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
-  }
+// const validate = (name, value) => {
+//     reach(name)
+//       .validate(value)
+//       .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+//       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
+//   }
 
 
 const inputChange = (name, value) => {
-    validate(name,value)
+    // validate(name,value)
     setFormValues({
       ...formValues,
       [name]: value 
@@ -116,10 +116,10 @@ const inputChange = (name, value) => {
 //     getFriends()
 //   }, [])
 
-  useEffect(() => {
-    Schema.isValid(formValues)
-    .then(valid => setDisabled(valid))
-  }, [formValues])
+  // useEffect(() => {
+  //   Schema.isValid(formValues)
+  //   .then(valid => setDisabled(valid))
+  // }, [formValues])
 
 
     return(
@@ -129,7 +129,7 @@ const inputChange = (name, value) => {
            change={inputChange}
            submit={formSubmit}
            disabled={disabled}
-           errors={formErrors}
+          //  errors={formErrors}
           />
         </div>
     )

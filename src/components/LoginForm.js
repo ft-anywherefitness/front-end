@@ -72,10 +72,10 @@ export default function Login(props){
             <h1>User Login</h1>
 
 
-            <div className = 'errors'>
+            {/* <div className = 'errors'>
                 <div>{errors.username}</div>
                 <div>{errors.password}</div>
-            </div>
+            </div> */}
 
 
         {/* ////////// TEXT INPUTS ////////// */}
