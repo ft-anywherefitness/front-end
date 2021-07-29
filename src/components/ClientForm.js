@@ -1,5 +1,5 @@
 import React from 'react' 
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 const StyledClient = styled.div`
@@ -44,6 +44,7 @@ button{
         padding:5%;
         border:5px solid;
         border-image: linear-gradient(to right, red, purple) 1;
+        margin-top: 20%;
     }
 
     #search{
@@ -58,8 +59,7 @@ export default function Client(props){
         values,
         submit,
         change,
-        disabled,
-        errors,
+        
     } = props
 
 
@@ -70,9 +70,8 @@ export default function Client(props){
 
 
     const onChange = (evt) => {
-        const { name, value, type, checked } = evt.target
-        const valueToUse = type === 'checkbox' ? checked : value
-        change(name, valueToUse)
+        const { name, value, type} = evt.target
+        change(name, value, type)
     }
 
 
@@ -80,25 +79,23 @@ export default function Client(props){
         <StyledClient>
             
         <form className = 'client-container' onSubmit = {onSubmit}>
-            <Link to ='/'>
-                <button>Home</button>
-            </Link>
             <div className='container'>
             <h2>Search Custom Workout Class</h2>
 
-            <div className = 'errors'>
+            {/* <div className = 'errors'>
                 <div>{errors.name}</div>
                 <div>{errors.location}</div>
                 <div>{errors.time}</div>
-            </div>
+            </div> */}
 
             <div>
             <label>Name
                 <input
-                    value={values.name}
+                    value={values.class_name}
                     onChange={onChange}
-                    name='name'
+                    name='class_name'
                     type='text'
+                    placeholder = 'Enter a class name'
                 />
             </label>
         </div>
@@ -107,10 +104,11 @@ export default function Client(props){
         <div>
             <label>Location
                 <input
-                    value={values.location}
+                    value={values.class_location}
                     onChange={onChange}
-                    name='location'
+                    name='class_location'
                     type='text'
+                    placeholder = 'Enter a location'
                 />
             </label>
         </div>
@@ -120,104 +118,79 @@ export default function Client(props){
 
         <label>Easy
             <input 
-              type='checkbox'
-              name='easy'
+              type='radio'
+              name='intensity_level'
+              value = 'easy'
               onChange={onChange}
-              checked={values.easy}
+              checked={values.intensity_level === 'easy'}
             />
         </label>
 
         <label>Intermediate
             <input 
-              type='checkbox'
-              name='intermediate'
+              type='radio'
+              name='intensity_level'
+              value = 'intermediate'
               onChange={onChange}
-              checked={values.intermediate}
+              checked={values.intensity_level === 'intermediate'}
             />
         </label>
 
         <label>Advanced
             <input 
-              type='checkbox'
-              name='advanced'
+              type='radio'
+              name='intensity_level'
+              value = 'advanced'
               onChange={onChange}
-              checked={values.advanced}
+              checked={values.intensity_level === 'advanced'}
             />
         </label>
         </div>
 
         <div> 
-            <h3>Class Type</h3>
-
-        <label>Yoga
-            <input 
-              type='checkbox'
-              name='yoga'
-              onChange={onChange}
-              checked={values.yoga}
-            />
-        </label>
-
-        <label>Pilates
-            <input 
-              type='checkbox'
-              name='pilates'
-              onChange={onChange}
-              checked={values.pilates}
-            />
-        </label>
-
-        <label>Strength
-            <input 
-              type='checkbox'
-              name='strength'
-              onChange={onChange}
-              checked={values.strength}
-            />
-        </label>
-
-        <label>Cardio
-            <input 
-              type='checkbox'
-              name='cardio'
-              onChange={onChange}
-              checked={values.cardio}
-            />
-        </label>
+            
+        <h3>ClassType</h3>
+                <input
+                    value={values.class_type}
+                    onChange={onChange}
+                    name='class_type'
+                    type='text'
+                    placeholder = 'Enter a class'
+                />
         </div>
 
         <div> 
             <h3>Time Duration</h3>
         <label>Time Select
           <select
-            value={values.time}
+            value={values.start_time}
             onChange={onChange}
-            name='time'
+            name='start_time'
             >
             <option value=''>- Select a time -</option>
-            <option value='6am'>6:00 AM - 7:00 AM</option>
-            <option value='7am'>7:00 AM - 8:00 AM</option>
-            <option value='8am'>8:00 AM - 9:00 AM</option>
-            <option value='9am'>9:00 AM - 10:00 AM</option>
-            <option value='10am'>10:00 AM - 11:00 AM</option>
-            <option value='11am'>11:00 AM - 12:00 PM</option>
-            <option value='12pm'>12:00 PM - 1:00 PM</option>
-            <option value='1pm'>1:00 PM - 2:00 PM</option>
-            <option value='2pm'>2:00 PM - 3:00 PM</option>
-            <option value='3pm'>3:00 PM - 4:00 PM</option>
-            <option value='4pm'>4:00 PM - 5:00 PM</option>
-            <option value='5pm'>5:00 PM - 6:00 PM</option>
-            <option value='6pm'>6:00 PM - 7:00 PM</option>
-            <option value='7pm'>7:00 PM - 8:00 PM</option>
-            <option value='8pm'>8:00 PM - 9:00 PM</option>
-            <option value='9pm'>9:00 PM - 10:00 PM</option>
-            <option value='10pm'>10:00 PM -11:00 PM</option>
+            <option value='06:00:00'>6:00 AM - 7:00 AM</option>
+            <option value='07:00:00'>7:00 AM - 8:00 AM</option>
+            <option value='08:00:00'>8:00 AM - 9:00 AM</option>
+            <option value='09:00:00'>9:00 AM - 10:00 AM</option>
+            <option value='10:00:00'>10:00 AM - 11:00 AM</option>
+            <option value='11:00:00'>11:00 AM - 12:00 PM</option>
+            <option value='12:00:00'>12:00 PM - 1:00 PM</option>
+            <option value='01:00:00'>1:00 PM - 2:00 PM</option>
+            <option value='02:00:00'>2:00 PM - 3:00 PM</option>
+            <option value='03:00:00'>3:00 PM - 4:00 PM</option>
+            <option value='04:00:00'>4:00 PM - 5:00 PM</option>
+            <option value='05:00:00'>5:00 PM - 6:00 PM</option>
+            <option value='06:00:00'>6:00 PM - 7:00 PM</option>
+            <option value='07:00:00'>7:00 PM - 8:00 PM</option>
+            <option value='08:00:00'>8:00 PM - 9:00 PM</option>
+            <option value='09:00:00'>9:00 PM - 10:00 PM</option>
+            <option value='10:00:00'>10:00 PM -11:00 PM</option>
           </select>
         </label>
         </div>
     
 
-        <button id='search' disabled={disabled}>Search Class</button>
+        <button id='search'>Search Class</button>
         </div>
        </form>
   
