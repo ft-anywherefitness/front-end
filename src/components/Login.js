@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import LoginForm from '../components/LoginForm';
-// import axios from 'axios'
+import axios from 'axios'
 import Schema from '../validation/Schema'
 import {reach} from 'yup'
+
+import { useHistory } from 'react-router-dom'
 
 
 //////////////// INITIAL STATES ////////////////
@@ -23,7 +25,7 @@ const initialFormErrors = {
 const initialLogin = []
 const initialDisabled = true
 
-export default function InitialLogin(){
+export default function InitialLogin(props){
   //////////////// STATES ////////////////
   //////////////// STATES ////////////////
   //////////////// STATES ////////////////
@@ -32,7 +34,7 @@ const [formValues, setFormValues] = useState(initialFormValues)
 const [formErrors, setFormErrors] = useState(initialFormErrors)
 const [disabled, setDisabled] = useState(initialDisabled)
 
-
+const { push } = useHistory()
 
 
   //////////////// HELPERS ////////////////
@@ -52,18 +54,25 @@ const [disabled, setDisabled] = useState(initialDisabled)
 //   }
 
 
-//   const postNewLogin = newLogin => {
-//     axios.post('', newFriend)
-//       .then(res => {
-//         setLogin([res.data, ...friends])
-//       })
-//       .catch(err => {
-//         console.log(err)
-//       })
-//       .finally(() => {
-//         setFormValues(initialFormValues)
-//       })
-//   }
+  const postNewLogin = newLogin => {
+    axios.post('http://localhost:5000/api/auth/login', newLogin)
+      .then(res => {
+        // console.log('check res', res.data)
+        setLogin([res.data, ...login])
+        props.setLog(res.data.username)
+        if (res.data.role === 'client') {
+          push('/Client')
+        } else {
+          push('/Instructor')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .finally(() => {
+        setFormValues(initialFormValues)
+      })
+  }
 
 
   //////////////// EVENT HANDLERS ////////////////
@@ -95,7 +104,7 @@ const inputChange = (name, value) => {
       password: formValues.password.trim(),
     }
     console.log(newLogin)
-    // postNewLogin(newLogin)
+    postNewLogin(newLogin)
   }
 
 
@@ -109,12 +118,12 @@ const inputChange = (name, value) => {
 
   useEffect(() => {
     Schema.isValid(formValues)
-    .then(valid => setDisabled(!valid))
+    .then(valid => setDisabled(valid))
   }, [formValues])
 
 
     return(
-        <form>
+        <div>
           <LoginForm 
            values={formValues}
            change={inputChange}
@@ -122,7 +131,7 @@ const inputChange = (name, value) => {
            disabled={disabled}
            errors={formErrors}
           />
-        </form>
+        </div>
     )
 }
 
