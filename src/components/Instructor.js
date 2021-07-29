@@ -1,36 +1,32 @@
 import React, {useState,useEffect} from "react"
-// import axios from 'axios'
+import axios from 'axios'
 import InstructorForm from '../components/InstructorForm'
-import Schema from '../validation/Schema'
-import {reach} from 'yup'
+// import Schema from '../validation/Schema'
+// import {reach} from 'yup'
 
 const initialFormValues = {
 //text inputs
-  name:'',
-  location:'',
-  attendees:'',
-  size:'',
+  class_name:'',
+  class_location:'',
+  registered:'',
+  max_size:'',
+  class_type:'',
 
 //dropdown
-time:'',
+  start_time:'',
 
-//checkbox
-
-easy: false,
-intermediate: false,
-advanced: false,
-yoga:false,
-pilates:false,
-strength:false,
-cardio:false,
+//radio
+  intensity_level:'',
 }
 
 const initialFormErrors = {
-    name:'',
-    time:'',
-    location:'',
-    attendees:'',
-    size:'',
+  class_name:'',
+  class_location:'',
+  registered:'',
+  max_size:'',
+  class_type:'',  
+  start_time:'',
+  intensity_level:'',
 }
 
 const initialUser = []
@@ -53,40 +49,42 @@ const Instructor = () => {
 //     })
 //   }
 
-//   const postNewUser = newUser => {
-//     axios.post('https://reqres.in/api/users', newUser)
-//     .then(res => {
-//       setUsers([res.data, ...users])
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     })
-//     .finally(() => {
-//       setFormValues(initialFormValues)
-//     })
-//   }
+  const postNewUser = newUser => {
+    axios.post('', newUser)
+    .then(res => {
+      setUsers([res.data, ...users])
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    .finally(() => {
+      setFormValues(initialFormValues)
+    })
+  }
 
 const formSubmit = () => {
     const newUser = {
-      name: formValues.name.trim(),
-      location: formValues.location.trim(),
-      attendees: formValues.attendees.trim(),
-      size: formValues.size.trim(),
-      time:formValues.time.trim(),
+      class_name: formValues.class_name.trim(),
+      class_location: formValues.class_location.trim(),
+      registered: formValues.registered.trim(),
+      max_size: formValues.max_size.trim(),
+      start_time:formValues.start_time.trim(),
+      class_type:formValues.class_type.trim(),
+      intensity_level:formValues.intensity_level.trim(),
     }
-    // postNewUser(newUser)
+    postNewUser(newUser)
   }
 
-  const validate = (name,value) => {
-    reach(Schema,name)
-    .validate(value)
-    .then(() => setFormErrors({...formErrors,[name]: ''}))
-    .catch(err => setFormErrors({...formErrors,[name]: err.errors[0]}))
-  }
+  // const validate = (name,value) => {
+  //   reach(Schema,name)
+  //   .validate(value)
+  //   .then(() => setFormErrors({...formErrors,[name]: ''}))
+  //   .catch(err => setFormErrors({...formErrors,[name]: err.errors[0]}))
+  // }
   
 
     const inputChange = (name, value) => {
-        validate(name,value)
+        // validate(name,value)
         setFormValues({
           ...formValues,
           [name]: value
@@ -97,10 +95,10 @@ const formSubmit = () => {
     //     getUsers()
     //   }, [])
 
-      useEffect(() => {
-        Schema.isValid(formValues)
-        .then(valid => setDisabled(!valid))
-      }, [formValues])
+      // useEffect(() => {
+      //   Schema.isValid(formValues)
+      //   .then(valid => setDisabled(!valid))
+      // }, [formValues])
 
       return (
         <form>
