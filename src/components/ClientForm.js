@@ -1,5 +1,56 @@
 import React from 'react' 
 import {Link} from 'react-router-dom'
+import styled from 'styled-components'
+
+const StyledClient = styled.div`
+display:flex;
+justify-content:center;
+border:5px solid black;
+height:100vh;
+background-image: url('https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Zml0bmVzcyUyMGNsYXNzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+background-repeat: no-repeat;
+background-size:cover;
+background-position:center;
+object-fit: contain;
+
+button{
+    display:flex;
+    justify-content:center;
+    border-radius:5px;
+    background-color:#ccccff;
+    width:15%;
+    margin-left:50%;
+    margin-top:10%;
+    margin-bottom:15%;
+    
+    }
+    
+    button:hover{
+    background-color: grey;
+    color: white;
+    }
+
+    h2{
+        color:#ccffff;
+
+    }
+    
+
+    .container{
+        background-color:black;
+        color:white;
+        width:100%;
+        border-radius:20px;
+        padding:5%;
+        border:5px solid;
+        border-image: linear-gradient(to right, red, purple) 1;
+    }
+
+    #search{
+        margin-left:42%;
+        padding:2%;
+    }
+`
 
 
 export default function Client(props){
@@ -26,12 +77,14 @@ export default function Client(props){
 
 
     return(
+        <StyledClient>
+            
         <form className = 'client-container' onSubmit = {onSubmit}>
             <Link to ='/'>
                 <button>Home</button>
             </Link>
-
-            <h2>Choose Your Own Custom Workout Class</h2>
+            <div className='container'>
+            <h2>Search Custom Workout Class</h2>
 
             <div className = 'errors'>
                 <div>{errors.name}</div>
@@ -164,8 +217,11 @@ export default function Client(props){
         </div>
     
 
-        <button disabled={disabled}>Create Class</button>
+        <button id='search' disabled={disabled}>Search Class</button>
+        </div>
        </form>
+  
+       </StyledClient>
     )
 }
 

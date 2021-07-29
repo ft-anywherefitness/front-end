@@ -1,6 +1,44 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import styled from 'styled-components'
 
+const StyledLogin = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+border:5px solid black;
+height:100vh;
+
+button{
+    display:flex;
+    justify-content:center;
+    border-radius:5px;
+    background-color:#ccccff;
+    }
+
+    
+    button:hover{
+    background-color: grey;
+    color: white;
+    }
+    
+    .loginDiv{
+        padding:15%;
+        height:50vh;
+        width:150%;
+        box-shadow:5px 10px 8px 10px #888888;
+    }
+
+    #submit{
+        padding:3%;
+        margin-top:10%;
+        margin-left:40%;
+    }
+
+    #login-button{
+        margin-top:25%;
+    }
+`
 
 
 export default function Login(props){
@@ -26,10 +64,10 @@ export default function Login(props){
     }
 
     return(
+        <StyledLogin>
         <form className = 'login-container' onSubmit = {onSubmit}>
-            <h2>User Login</h2>
 
-            <div className = 'login-page-home-button'>
+            <div className = 'login-button'>
             <Link to ='/'>
                 <button>Home</button>
             </Link>
@@ -38,6 +76,9 @@ export default function Login(props){
                 <button>Client</button>
             </Link>
             </div>
+
+            <div className='loginDiv'>
+            <h1>User Login</h1>
 
 
             <div className = 'errors'>
@@ -71,8 +112,9 @@ export default function Login(props){
                     />
                 </label>
             </div>
-            <button disabled = {disabled}>submit</button>
-
+            <button id='submit' disabled = {disabled}>submit</button>
+            </div>
         </form>
+        </StyledLogin>
     )
 }

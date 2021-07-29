@@ -1,5 +1,56 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import styled from 'styled-components'
+
+const StyledInstructor = styled.div`
+display:flex;
+justify-content:center;
+border:5px solid black;
+height:100vh;
+background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGxhbm5pbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+background-repeat: no-repeat;
+background-size:cover;
+background-position:center;
+object-fit: contain;
+
+
+button{
+display:flex;
+justify-content:center;
+border-radius:5px;
+background-color:#ccccff;
+width:15%;
+margin-left:50%;
+margin-top:10%;
+margin-bottom:15%;
+}
+
+button:hover{
+background-color: grey;
+color: white;
+}
+
+h1{
+    color:#ccffff;
+    margin-left:20%;
+}
+
+.formDiv{
+    background-color:black;
+    color:white;
+    width:100%;
+    height:70vh;
+    border-radius:20px;
+    padding:5%;
+    border:5px solid;
+    border-image: linear-gradient(to right,  #ffccff, #66ffff) 1;
+}
+
+#create{
+    margin-left:42%;
+}
+
+`
 
    
 
@@ -24,12 +75,15 @@ export default function InstructorForm (props) {
     
 
     return (
+        <StyledInstructor>
+          
         <form onSubmit={onSubmit}>
-            <div>
+           
                 <Link to = '/'>
                     <button>Home</button>
                 </Link>
-                <h2>Create Your Class</h2>
+                <div className='formDiv'>
+                <h1>Create Your Class</h1>
 
                 <div className='errors'>
                 <div>{errors.name}</div>
@@ -38,7 +92,7 @@ export default function InstructorForm (props) {
                 <div>{errors.size}</div>
                 <div>{errors.time}</div>
                 </div>
-            </div>
+           
 
         <div>
             <label>Name
@@ -188,9 +242,10 @@ export default function InstructorForm (props) {
         </div>
     
 
-        <button disabled={disabled}>Create Class</button>
-       
+        <button id='create' disabled={disabled}>Create Class</button>
+        </div>
         </form>
+        </StyledInstructor>
     )
 
 
