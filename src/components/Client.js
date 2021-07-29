@@ -12,6 +12,7 @@ const initialFormValues = {
   class_location:'',
   //dropdown
   start_time:'',
+  duration: 60,
 
   //radio
   intensity_level: '',
@@ -101,6 +102,7 @@ const inputChange = (name, value) => {
       name: formValues.name.trim(),
       location: formValues.location.trim(),
       time:formValues.time.trim(),
+      duration: 60
     }
     console.log(newClient)
     // postNewClient(newClient)
