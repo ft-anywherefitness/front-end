@@ -43,7 +43,7 @@ const Register = () => {
 //   }
 
   const postNewUser = newUser => {
-    axios.post('http://localhost:5000/api/auth/register', newUser)
+    axios.post('https://fit-anywhere.herokuapp.com/api/auth/register', newUser)
     .then(res => {
       setUsers([res.data, ...users])
       push('/Login')

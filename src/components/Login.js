@@ -55,7 +55,7 @@ const { push } = useHistory()
 
 
   const postNewLogin = newLogin => {
-    axios.post('http://localhost:5000/api/auth/login', newLogin)
+    axios.post('https://fit-anywhere.herokuapp.com/api/auth/login', newLogin)
       .then(res => {
         // console.log('check res', res.data)
         setLogin([res.data, ...login])

@@ -63,7 +63,7 @@ const Instructor = (props) => {
     //     console.log(err)
     // })
 
-    axios.post('http://localhost:5000/api/classes/instructor', newClass)
+    axios.post('https://fit-anywhere.herokuapp.com/api/classes/instructor', newClass)
     .then(res => {
       setClasses([res.data, ...classes])
     })

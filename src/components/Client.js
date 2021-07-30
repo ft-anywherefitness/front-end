@@ -63,7 +63,7 @@ export default function InitialClient() {
 
 
   const postNewClass = newClass => {
-    axios.post('http://localhost:5000/api/classes/client', newClass)
+    axios.post('https://fit-anywhere.herokuapp.com/api/classes/client', newClass)
       .then(res => {
         setClasses([res.data, ...classes])
         setFormValues(initialFormValues)
