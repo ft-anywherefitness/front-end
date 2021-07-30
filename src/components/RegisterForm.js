@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 
@@ -52,7 +51,7 @@ export default function RegisterForm (props) {
     values,
     submit,
     change,
-    disabled,
+    disabled, //eslint-disable-line
     errors,
     } = props
     
@@ -126,7 +125,7 @@ export default function RegisterForm (props) {
 
    
 
-        <button id='register-button' disabled={disabled}>Register</button>
+        <button id='register-button'>Register</button>
 
         </div>
         </form>

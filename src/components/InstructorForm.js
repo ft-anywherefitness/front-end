@@ -60,8 +60,8 @@ export default function InstructorForm (props) {
     values,
     submit,
     change,
-    disabled,
-    errors,
+    disabled, //eslint-disable-line
+    errors, //eslint-disable-line
     } = props
     
     const onSubmit = (evt) => {
@@ -82,15 +82,15 @@ export default function InstructorForm (props) {
                 <div className='formDiv'>
                 <h1>Create Your Class</h1>
 
-                <div className='errors'>
+                {/* <div className='errors'>
                 <div>{errors.class_name}</div>
                 <div>{errors.class_location}</div>
                 <div>{errors.registered}</div>
                 <div>{errors.max_size}</div>
                 <div>{errors.start_time}</div>
                 <div>{errors.class_type}</div>
-                <div>{errors.intensity_level}</div>
-                </div>
+                <div>{errors.intensity_level}</div> */}
+                {/* </div> */}
            
 
         <div>
@@ -111,7 +111,7 @@ export default function InstructorForm (props) {
                 <input
                     value={values.class_location}
                     onChange={onChange}
-                    name='classs_location'
+                    name='class_location'
                     type='text'
                     placeholder='Please enter a location'
                 />
@@ -149,7 +149,7 @@ export default function InstructorForm (props) {
                     value={values.class_type}
                     onChange={onChange}
                     name='class_type'
-                    type='number'
+                    type='text'
                     placeholder='Please enter class type'
                 />
             </label>
@@ -165,10 +165,10 @@ export default function InstructorForm (props) {
             name='start_time'
             >
             <option value=''>- Select a time -</option>
-            <option value='6:00:00'>6:00 AM - 7:00 AM</option>
-            <option value='7:00:00'>7:00 AM - 8:00 AM</option>
-            <option value='8:00:00'>8:00 AM - 9:00 AM</option>
-            <option value='9:00:00'>9:00 AM - 10:00 AM</option>
+            <option value='06:00:00'>6:00 AM - 7:00 AM</option>
+            <option value='07:00:00'>7:00 AM - 8:00 AM</option>
+            <option value='08:00:00'>8:00 AM - 9:00 AM</option>
+            <option value='09:00:00'>9:00 AM - 10:00 AM</option>
             <option value='10:00:00'>10:00 AM - 11:00 AM</option>
             <option value='11:00:00'>11:00 AM - 12:00 PM</option>
             <option value='12:00:00'>12:00 PM - 1:00 PM</option>
@@ -212,7 +212,7 @@ export default function InstructorForm (props) {
         <label>Advanced
         <input
             type='radio'
-            name='intenisity_level'
+            name='intensity_level'
             value='advanced'
             onChange={onChange}
             checked={values.intensity_level === 'advanced'}
@@ -220,7 +220,7 @@ export default function InstructorForm (props) {
         </label>
         </div>
 
-        <button id='create' disabled={disabled}>Create Class</button>
+        <button id='create'>Create Class</button>
         </div>
         </form>
         </StyledInstructor>

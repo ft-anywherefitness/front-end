@@ -1,8 +1,9 @@
-import React, {useState,useEffect} from "react"
+import React, {useState } from "react"
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import RegisterForm from './RegisterForm'
-import Schema from '../validation/Schema'
-import {reach} from 'yup'
+// import Schema from '../validation/Schema'
+// import {reach} from 'yup'
 
 
 const initialFormValues = {
@@ -25,8 +26,10 @@ const initialDisabled = true
 const Register = () => {
   const [users, setUsers] = useState(initialUser)          
   const [formValues, setFormValues] = useState(initialFormValues)
-  const [formErrors, setFormErrors] = useState(initialFormErrors)
-  const [disabled, setDisabled] = useState(initialDisabled)    
+  const [formErrors, setFormErrors] = useState(initialFormErrors) //eslint-disable-line
+  const [disabled, setDisabled] = useState(initialDisabled) //eslint-disable-line
+
+  const { push } = useHistory()
 
 
 // const getUsers = () => {
@@ -42,8 +45,8 @@ const Register = () => {
   const postNewUser = newUser => {
     axios.post('http://localhost:5000/api/auth/register', newUser)
     .then(res => {
-      // console.log("Checking data", res.data)
       setUsers([res.data, ...users])
+      push('/Login')
     })
     .catch(err => {
       console.log(err)
@@ -62,16 +65,16 @@ const formSubmit = () => {
     postNewUser(newUser)
   }
 
-  const validate = (name,value) => {
-    reach(Schema,name)
-    .validate(value)
-    .then(() => setFormErrors({...formErrors,[name]: ''}))
-    .catch(err => setFormErrors({...formErrors,[name]: err.errors[0]}))
-  }
+  // const validate = (name,value) => {
+  //   reach(Schema,name)
+  //   .validate(value)
+  //   .then(() => setFormErrors({...formErrors,[name]: ''}))
+  //   .catch(err => setFormErrors({...formErrors,[name]: err.errors[0]}))
+  // }
   
 
     const inputChange = (name, value) => {
-        validate(name,value)
+        // validate(name,value)
         setFormValues({
           ...formValues,
           [name]: value
@@ -82,10 +85,10 @@ const formSubmit = () => {
     //     getUsers()
     //   }, [])
 
-      useEffect(() => {
-        Schema.isValid(formValues)
-        .then(valid => setDisabled(valid))
-      }, [formValues])
+      // useEffect(() => {
+      //   Schema.isValid(formValues)
+      //   .then(valid => setDisabled(valid))
+      // }, [formValues])
 
       return (
         <div>

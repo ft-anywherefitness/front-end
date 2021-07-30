@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react' 
+import React, { useState } from 'react' 
 import ClientForm from '../components/ClientForm'
+import axios from 'axios'
 // import Schema from '../validation/Schema'
 // import {reach} from 'yup'
 
@@ -30,7 +31,7 @@ const initialFormValues = {
 // }
 
 
-const initialClient = []
+const initialClasses = []
 
 const initialDisabled = true
 
@@ -38,17 +39,17 @@ export default function InitialClient() {
   //////////////// STATES ////////////////
   //////////////// STATES ////////////////
   //////////////// STATES ////////////////
-    const [client, setClient] = useState(initialClient)
+    const [classes, setClasses] = useState(initialClasses)
     const [formValues, setFormValues] = useState(initialFormValues)
     // const [formErrors, setFormErrors] = useState(initialFormErrors)
-    const [disabled, setDisabled] = useState(initialDisabled)
+    const [disabled, setDisabled] = useState(initialDisabled) //eslint-disable-line
 
 
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
 
-// const getClient = () => {
+// const getClasses = () => {
  
 //     axios.get('')
 //       .then(res => {
@@ -61,18 +62,16 @@ export default function InitialClient() {
 //   }
 
 
-//   const postNewClient = newClient => {
-//     axios.post('', newClient)
-//       .then(res => {
-//         setClient([res.data, ...clients])
-//       })
-//       .catch(err => {
-//         console.log(err)
-//       })
-//       .finally(() => {
-//         setFormValues(initialFormValues)
-//       })
-//   }
+  const postNewClass = newClass => {
+    axios.post('http://localhost:5000/api/classes/client', newClass)
+      .then(res => {
+        setClasses([res.data, ...classes])
+        setFormValues(initialFormValues)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
 
   //////////////// EVENT HANDLERS ////////////////
@@ -98,14 +97,16 @@ const inputChange = (name, value) => {
 
 
   const formSubmit = () => {
-    const newClient = {
-      name: formValues.name.trim(),
-      location: formValues.location.trim(),
-      time:formValues.time.trim(),
-      duration: 60
+    const newClass = {
+      class_name: formValues.class_name.trim(),
+      class_type: 'boxing',
+      intensity_level: 'easy',
+      class_location: formValues.class_location.trim(),
+      start_time:formValues.start_time.trim(),
+      duration: 60,
+      instructor_id: 1
     }
-    console.log(newClient)
-    // postNewClient(newClient)
+    postNewClass(newClass)
   }
 
     //////////////// SIDE EFFECTS ////////////////
@@ -123,7 +124,7 @@ const inputChange = (name, value) => {
 
 
     return(
-        <form>
+        <div>
             <ClientForm 
             values={formValues}
             change={inputChange}
@@ -131,7 +132,7 @@ const inputChange = (name, value) => {
             disabled={disabled}
             // errors={formErrors}
             />
-        </form>
+        </div>
         )
     
 }

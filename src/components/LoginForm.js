@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 const StyledLogin = styled.div`
@@ -47,8 +46,8 @@ export default function Login(props){
         values,
         submit,
         change,
-        disabled,
-        errors,
+        disabled, //eslint-disable-line
+        errors, //eslint-disable-line
     } = props
 
 
@@ -103,7 +102,7 @@ export default function Login(props){
                     />
                 </label>
             </div>
-            <button id='submit' disabled = {disabled}>submit</button>
+            <button id='submit'>submit</button>
             </div>
         </form>
         </StyledLogin>

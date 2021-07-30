@@ -24,37 +24,48 @@ const initialFormValues = {
 const initialFormErrors = {
   class_name:'',
   class_location:'',
-  registered:'',
-  max_size:'',
+  registered:0,
+  max_size:0,
   class_type:'',  
   start_time:'',
   intensity_level:'',
 }
 
-const initialUser = []
+const initialClasses = []
 const initialDisabled = true
 
-const Instructor = () => {
-  const [users, setUsers] = useState(initialUser)          
+const Instructor = (props) => {
+  const [classes, setClasses] = useState(initialClasses)          
   const [formValues, setFormValues] = useState(initialFormValues)
-  const [formErrors, setFormErrors] = useState(initialFormErrors)
-  const [disabled, setDisabled] = useState(initialDisabled)    
+  const [formErrors, setFormErrors] = useState(initialFormErrors) //eslint-disable-line
+  const [disabled, setDisabled] = useState(initialDisabled) //eslint-disable-line
 
 
-// const getUsers = () => {
-//     axios.get('https://reqres.in/api/orders')
-//     .then(res => {
-//       setUsers(res.data)
-//     })
-//       .catch(err => {
-//         console.log(err)
-//     })
+// const getUserId = () => {
+//     console.log('checking user id', props.loggedIn)
+//     // axios.get(`http://localhost:5000/api/auth/${props.loggedIn}`)
+//     // .then(res => {
+//     //   console.log("get what users", res.data)
+//     //   setUserId(res.data)
+//     // })
+//     //   .catch(err => {
+//     //     console.log(err)
+//     // })
 //   }
 
-  const postNewUser = newUser => {
-    axios.post('', newUser)
+  const postNewClass = newClass => {
+
+    // axios.get(`http://localhost:5000/api/auth/${props.loggedIn}`)
+    // .then(res => {
+    //   newClass.user_id = res.data.user_id
+    // })
+    //   .catch(err => {
+    //     console.log(err)
+    // })
+
+    axios.post('http://localhost:5000/api/classes/instructor', newClass)
     .then(res => {
-      setUsers([res.data, ...users])
+      setClasses([res.data, ...classes])
     })
     .catch(err => {
       console.log(err)
@@ -65,17 +76,18 @@ const Instructor = () => {
   }
 
 const formSubmit = () => {
-    const newUser = {
+    const newClass = {
       class_name: formValues.class_name.trim(),
       class_location: formValues.class_location.trim(),
-      registered: formValues.registered,
-      max_size: formValues.max_size,
-      start_time:formValues.start_time.trim(),
+      registered: parseInt(formValues.registered),
+      max_size: parseInt(formValues.max_size),
+      start_time: formValues.start_time.trim(),
       class_type:formValues.class_type.trim(),
       intensity_level:formValues.intensity_level.trim(),
       duration: 60,
+      instructor_id: props.loggedIn
     }
-    postNewUser(newUser)
+    postNewClass(newClass)
   }
 
   // const validate = (name,value) => {
@@ -104,7 +116,7 @@ const formSubmit = () => {
       // }, [formValues])
 
       return (
-        <form>
+        <div>
           
           <InstructorForm
             values={formValues}
@@ -114,7 +126,7 @@ const formSubmit = () => {
             errors={formErrors}
           />
          
-        </form>
+        </div>
       );
       
   }

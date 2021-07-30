@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import axios from 'axios'
 // import Schema from '../validation/Schema'
@@ -32,7 +32,7 @@ export default function InitialLogin(props){
 const [login, setLogin] = useState(initialLogin)
 const [formValues, setFormValues] = useState(initialFormValues)
 // const [formErrors, setFormErrors] = useState(initialFormErrors)
-const [disabled, setDisabled] = useState(initialDisabled)
+const [disabled, setDisabled] = useState(initialDisabled) //eslint-disable-line
 
 const { push } = useHistory()
 
@@ -59,18 +59,17 @@ const { push } = useHistory()
       .then(res => {
         // console.log('check res', res.data)
         setLogin([res.data, ...login])
-        props.setLog(res.data.username)
-        if (res.data.role === 'client') {
+        //set global user
+        props.setLog(res.data.user.user_id)
+        if (res.data.user.role === 'client') {
           push('/Client')
         } else {
           push('/Instructor')
         }
+        setFormValues(initialFormValues)
       })
       .catch(err => {
         console.log(err)
-      })
-      .finally(() => {
-        setFormValues(initialFormValues)
       })
   }
 
@@ -103,7 +102,6 @@ const inputChange = (name, value) => {
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     }
-    console.log(newLogin)
     postNewLogin(newLogin)
   }
 
