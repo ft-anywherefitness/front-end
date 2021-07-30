@@ -23,9 +23,8 @@ button{
     }
     
     .loginDiv{
-        padding:15%;
+        padding:5rem;
         height:50vh;
-        width:150%;
         box-shadow:5px 10px 8px 10px #888888;
     }
 

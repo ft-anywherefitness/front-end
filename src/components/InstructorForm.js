@@ -36,6 +36,7 @@ h1{
 }
 
 .formDiv{
+    margin-top:15%;
     background-color:black;
     color:white;
     width:100%;
